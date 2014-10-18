@@ -1,3 +1,7 @@
+﻿//main.cpp
+//Name 吴松骏 Num 5132119049
+//2014.10.19 2:22
+
 #ifndef _linkq
 #define _linkq
 //#include <iostream>

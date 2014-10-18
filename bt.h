@@ -1,5 +1,5 @@
-//bt.cpp
-//Name ÎâËÉ¿¥ Num 5132119049
+ï»¿//bt.cpp
+//Name å´æ¾éª Num 5132119049
 //2014.10.16 13:51
 
 #ifndef _bt
@@ -14,19 +14,19 @@ template<class T>
 class binT
 {
 private:
-	//¶ş²æÊ÷½áµãÀà
+	//äºŒå‰æ ‘ç»“ç‚¹ç±»
 	struct node
 	{
 		node *left, *right;
 		T data;
 
 		node() :left(NULL), right(NULL){}
-		//¹¹Ôìº¯Êı
+		//æ„é€ å‡½æ•°
 		node(T item, node *l = NULL, node *r = NULL) :data(item), left(l), right(r){}
 		~node(){}
 	};
 
-	//¶ş²æÊ÷¸ù½Úµã
+	//äºŒå‰æ ‘æ ¹èŠ‚ç‚¹
 	node *root;
 
 	struct elem
@@ -59,7 +59,7 @@ public:
 		return root->right->data;
 	}
 
-	//°Ñ2¿ÃÊ÷Æ´³É1¿ÃÊ÷
+	//æŠŠ2æ£µæ ‘æ‹¼æˆ1æ£µæ ‘
 	void makeTree(const T &x, binT &lt, binT &rt)
 	{
 		root = new node(x, lt.root, rt.root);
@@ -106,7 +106,7 @@ public:
 	{
 		if (root != NULL)
 		{
-			cout << "\nÇ°Ğò±éÀú£º";
+			cout << "\nå‰åºéå†ï¼š";
 			preOrder(root);
 		}
 	}
@@ -114,7 +114,7 @@ public:
 	{
 		if (root != NULL)
 		{
-			cout << "\nºóĞò±éÀú£º";
+			cout << "\nååºéå†ï¼š";
 			postOrder(root);
 		}
 	}
@@ -122,17 +122,17 @@ public:
 	{
 		if (root != NULL)
 		{
-			cout << "\nÖĞĞò±éÀú£º";
+			cout << "\nä¸­åºéå†ï¼š";
 			midOrder(root);
 		}
 	}
 
 	void creatTree(T flag);
 
-	//²ã´Î±éÀú
+	//å±‚æ¬¡éå†
 	void depthTraverse();
 
-	//ÅĞ¶ÏÍêÈ«¶ş²æÊ÷
+	//åˆ¤æ–­å®Œå…¨äºŒå‰æ ‘
 	bool isComplettTree();
 
 private:
@@ -200,7 +200,7 @@ void binT<T>::creatTree(T flag)
 	node *tmp;
 	T x, ldata, rdata;
 
-	cout << "\nÇëÊäÈë¸ù½Úµã£º";
+	cout << "\nè¯·è¾“å…¥æ ¹èŠ‚ç‚¹ï¼š";
 	cin >> x;
 	root = new node(x);
 	que.enQueue(root);
@@ -208,7 +208,7 @@ void binT<T>::creatTree(T flag)
 	while (!que.isEmpty())
 	{
 		tmp = que.deQueue();
-		cout << "\nÊäÈë" << tmp->data << "µÄÁ½¸ö¶ù×Ó(ÊäÈë@±íÊ¾¿Õ½áµã)£º";
+		cout << "\nè¾“å…¥" << tmp->data << "çš„ä¸¤ä¸ªå„¿å­(è¾“å…¥@è¡¨ç¤ºç©ºç»“ç‚¹)ï¼š";
 		cin >> ldata >> rdata;
 		if (ldata != '@')
 			que.enQueue(tmp->left = new node(ldata));
@@ -225,7 +225,7 @@ void binT<T>::depthTraverse()
 	linkQ<node *> que;
 	node *cur;
 
-	cout << "²ã´Î±éÀú£º";
+	cout << endl << "å±‚æ¬¡éå†ï¼š";
 	if (root == NULL)
 		return;
 
@@ -256,10 +256,12 @@ bool binT<T>::isComplettTree()
 	cur.num = 1;
 	que.enQueue(cur);
 	int testPoint = 1;
-	while ( que.isEmpty() == 0)
+
+	while (que.isEmpty() == 0)
 	{
-		cout << endl << que.isEmpty() << testPoint++;
+		//cout << endl << que.isEmpty() << ' ' << testPoint++;
 		cur = que.deQueue();
+		//cout << endl << que.isEmpty();
 		if (cur.p->left != NULL)
 		{
 			++count;
@@ -268,12 +270,14 @@ bool binT<T>::isComplettTree()
 			que.enQueue(child);
 		}
 		if (cur.p->right != NULL)
+		{
 			++count;
 			child.p = cur.p->right;
 			last = child.num = cur.num * 2 + 1;
 			que.enQueue(child);
+		}
 	}
-	return count == last;
+	return (count==last);
 }
 
 #endif //_bt
