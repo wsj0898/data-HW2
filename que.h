@@ -34,7 +34,7 @@ public:
 	bool isEmpty()
 	{
 		//cout << "emptu" << (front == NULL);
-		return front == NULL;
+		return rear == NULL;
 	}
 
 	void enQueue(const TT &x);

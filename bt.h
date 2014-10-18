@@ -29,6 +29,12 @@ private:
 	//二叉树根节点
 	node *root;
 
+	struct elem
+	{
+		node *p;
+		int num;
+	};
+
 public:
 	binT() :root(NULL){}
 	binT( const T &value )
@@ -123,6 +129,12 @@ public:
 
 	void creatTree(T flag);
 
+	//层次遍历
+	void depthTraverse();
+
+	//判断完全二叉树
+	bool isComplettTree();
+
 private:
 	int height(node *t) const
 	{
@@ -184,7 +196,7 @@ private:
 template<class T>
 void binT<T>::creatTree(T flag)
 {
-	linkQ<node*> que;
+	linkQ<node *> que;
 	node *tmp;
 	T x, ldata, rdata;
 
@@ -205,6 +217,63 @@ void binT<T>::creatTree(T flag)
 	}
 
 	cout << "creat completted!\n";
+}
+
+template<class T>
+void binT<T>::depthTraverse()
+{
+	linkQ<node *> que;
+	node *cur;
+
+	cout << "层次遍历：";
+	if (root == NULL)
+		return;
+
+	que.enQueue(root);
+	while (!que.isEmpty())
+	{
+		cur = que.deQueue();
+		if (cur->left != NULL)
+			que.enQueue(cur->left);
+		if (cur->right != NULL)
+			que.enQueue(cur->right);
+		cout << cur->data << ' ';
+	}
+}
+
+template<class T>
+bool binT<T>::isComplettTree()
+{
+
+	linkQ<elem> que;
+	elem cur, child;
+	int count = 1;
+	int last = 1;
+
+	if (root == NULL)
+		return true;
+	cur.p = root;
+	cur.num = 1;
+	que.enQueue(cur);
+	int testPoint = 1;
+	while ( que.isEmpty() == 0)
+	{
+		cout << endl << que.isEmpty() << testPoint++;
+		cur = que.deQueue();
+		if (cur.p->left != NULL)
+		{
+			++count;
+			child.p = cur.p->left;
+			last = child.num = cur.num * 2;
+			que.enQueue(child);
+		}
+		if (cur.p->right != NULL)
+			++count;
+			child.p = cur.p->right;
+			last = child.num = cur.num * 2 + 1;
+			que.enQueue(child);
+	}
+	return count == last;
 }
 
 #endif //_bt
