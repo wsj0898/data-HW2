@@ -196,11 +196,11 @@ void binT<T>::creatTree(T flag)
 	while (!que.isEmpty())
 	{
 		tmp = que.deQueue();
-		cout << "\n输入" << tmp->data << "的两个儿子(输入flag表示空结点)：";
+		cout << "\n输入" << tmp->data << "的两个儿子(输入@表示空结点)：";
 		cin >> ldata >> rdata;
-		if (ldata != flag)
+		if (ldata != '@')
 			que.enQueue(tmp->left = new node(ldata));
-		if (rdata != flag)
+		if (rdata != '@')
 			que.enQueue(tmp->right = new node(rdata));
 	}
 

@@ -1,5 +1,7 @@
 #ifndef _linkq
 #define _linkq
+//#include <iostream>
+//using namespace std;
 
 template<class TT>
 class linkQ
@@ -25,13 +27,14 @@ public:
 	linkQ()
 	{
 		front = rear = NULL;
+		//rear->next = NULL;
 	}
 	~linkQ();
 
 	bool isEmpty()
 	{
-		cout << "emptu" << (front == rear);
-		return front == rear;
+		//cout << "emptu" << (front == NULL);
+		return front == NULL;
 	}
 
 	void enQueue(const TT &x);
@@ -72,7 +75,7 @@ TT linkQ<TT>::deQueue()
 	node *tmp = front;
 	TT value = front->data;
 	front = front->next;
-	if (front = NULL)
+	if (front == NULL)
 		rear = NULL;
 	delete tmp;
 	return value;

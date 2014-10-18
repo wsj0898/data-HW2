@@ -15,6 +15,7 @@ int main()
 	tree.preOrder();
 	tree.midOrder();
 	tree.postOrder();
+	cout << endl;
 
 	tree2.makeTree('Y', tree, tree1);
 	cout << endl;
